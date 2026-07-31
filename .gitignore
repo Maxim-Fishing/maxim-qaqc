@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+*.log
+preview_intro.jpg
+assets/img/LEEME.txt
+assets/video/LEEME.txt
+db/__pycache__/

@@ -1,0 +1,2144 @@
+[
+  {
+    "equipo_id": 1,
+    "grupo": "",
+    "tipo": "SS BALL",
+    "cantidad": "1",
+    "referencia": "1 1/8\""
+  },
+  {
+    "equipo_id": 1,
+    "grupo": "",
+    "tipo": "ORING FISHING NECK",
+    "cantidad": "1",
+    "referencia": "127"
+  },
+  {
+    "equipo_id": 1,
+    "grupo": "",
+    "tipo": "ORING SEAT, BY-PASS",
+    "cantidad": "1",
+    "referencia": "124"
+  },
+  {
+    "equipo_id": 1,
+    "grupo": "",
+    "tipo": "ORING PACKING MANDREL",
+    "cantidad": "1",
+    "referencia": "218"
+  },
+  {
+    "equipo_id": 1,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "1",
+    "referencia": "4-5 UNIDADES"
+  },
+  {
+    "equipo_id": 2,
+    "grupo": "",
+    "tipo": "SS BALL",
+    "cantidad": "1",
+    "referencia": "1 1/8\""
+  },
+  {
+    "equipo_id": 2,
+    "grupo": "",
+    "tipo": "ORING FISHING NECK",
+    "cantidad": "1",
+    "referencia": "127"
+  },
+  {
+    "equipo_id": 2,
+    "grupo": "",
+    "tipo": "ORING SEAT, BY-PASS",
+    "cantidad": "1",
+    "referencia": "124"
+  },
+  {
+    "equipo_id": 2,
+    "grupo": "",
+    "tipo": "ORING PACKING MANDREL",
+    "cantidad": "1",
+    "referencia": "218"
+  },
+  {
+    "equipo_id": 2,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "1",
+    "referencia": "4-5 UNIDADES"
+  },
+  {
+    "equipo_id": 3,
+    "grupo": "",
+    "tipo": "SS BALL",
+    "cantidad": "1",
+    "referencia": "1 1/8\""
+  },
+  {
+    "equipo_id": 3,
+    "grupo": "",
+    "tipo": "ORING FISHING NECK",
+    "cantidad": "1",
+    "referencia": "127"
+  },
+  {
+    "equipo_id": 3,
+    "grupo": "",
+    "tipo": "ORING SEAT, BY-PASS",
+    "cantidad": "1",
+    "referencia": "124"
+  },
+  {
+    "equipo_id": 3,
+    "grupo": "",
+    "tipo": "ORING PACKING MANDREL",
+    "cantidad": "1",
+    "referencia": "218"
+  },
+  {
+    "equipo_id": 3,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "1",
+    "referencia": "4-5 UNIDADES"
+  },
+  {
+    "equipo_id": 4,
+    "grupo": "",
+    "tipo": "SS BALL",
+    "cantidad": "1",
+    "referencia": "1 1/2\""
+  },
+  {
+    "equipo_id": 4,
+    "grupo": "",
+    "tipo": "ORING FISHING NECK",
+    "cantidad": "1",
+    "referencia": "133"
+  },
+  {
+    "equipo_id": 4,
+    "grupo": "",
+    "tipo": "ORING SEAT, BY-PASS",
+    "cantidad": "1",
+    "referencia": "128"
+  },
+  {
+    "equipo_id": 4,
+    "grupo": "",
+    "tipo": "ORING PACKING MANDREL",
+    "cantidad": "1",
+    "referencia": "222"
+  },
+  {
+    "equipo_id": 4,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "1",
+    "referencia": "4-5 UNIDADES"
+  },
+  {
+    "equipo_id": 5,
+    "grupo": "",
+    "tipo": "SS BALL",
+    "cantidad": "1",
+    "referencia": "1 1/2\""
+  },
+  {
+    "equipo_id": 5,
+    "grupo": "",
+    "tipo": "ORING FISHING NECK",
+    "cantidad": "1",
+    "referencia": "133"
+  },
+  {
+    "equipo_id": 5,
+    "grupo": "",
+    "tipo": "ORING SEAT, BY-PASS",
+    "cantidad": "1",
+    "referencia": "128"
+  },
+  {
+    "equipo_id": 5,
+    "grupo": "",
+    "tipo": "ORING PACKING MANDREL",
+    "cantidad": "1",
+    "referencia": "222"
+  },
+  {
+    "equipo_id": 5,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "1",
+    "referencia": "4-5 UNIDADES"
+  },
+  {
+    "equipo_id": 6,
+    "grupo": "",
+    "tipo": "SS BALL",
+    "cantidad": "1",
+    "referencia": "1 11/16\""
+  },
+  {
+    "equipo_id": 6,
+    "grupo": "",
+    "tipo": "ORING FISHING NECK",
+    "cantidad": "1",
+    "referencia": "141"
+  },
+  {
+    "equipo_id": 6,
+    "grupo": "",
+    "tipo": "ORING SEAT, BY-PASS",
+    "cantidad": "1",
+    "referencia": "135"
+  },
+  {
+    "equipo_id": 6,
+    "grupo": "",
+    "tipo": "ORING PACKING MANDREL",
+    "cantidad": "1",
+    "referencia": "225"
+  },
+  {
+    "equipo_id": 6,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "1",
+    "referencia": "4-5 UNIDADES"
+  },
+  {
+    "equipo_id": 7,
+    "grupo": "",
+    "tipo": "SS BALL",
+    "cantidad": "1",
+    "referencia": "1 11/16\""
+  },
+  {
+    "equipo_id": 7,
+    "grupo": "",
+    "tipo": "ORING FISHING NECK",
+    "cantidad": "1",
+    "referencia": "141"
+  },
+  {
+    "equipo_id": 7,
+    "grupo": "",
+    "tipo": "ORING SEAT, BY-PASS",
+    "cantidad": "1",
+    "referencia": "135"
+  },
+  {
+    "equipo_id": 7,
+    "grupo": "",
+    "tipo": "ORING PACKING MANDREL",
+    "cantidad": "1",
+    "referencia": "225"
+  },
+  {
+    "equipo_id": 7,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "1",
+    "referencia": "4-5 UNIDADES"
+  },
+  {
+    "equipo_id": 8,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN FISHING NECK",
+    "cantidad": "1",
+    "referencia": "3/16\""
+  },
+  {
+    "equipo_id": 8,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN DEL RETAINERRING",
+    "cantidad": "1",
+    "referencia": "3/16\" X 15/16\""
+  },
+  {
+    "equipo_id": 8,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "14"
+  },
+  {
+    "equipo_id": 8,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "11"
+  },
+  {
+    "equipo_id": 8,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "110"
+  },
+  {
+    "equipo_id": 9,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN FISHING NECK",
+    "cantidad": "1",
+    "referencia": "3/16\""
+  },
+  {
+    "equipo_id": 9,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN DEL RETAINERRING",
+    "cantidad": "1",
+    "referencia": "3/16\" X 15/16\""
+  },
+  {
+    "equipo_id": 9,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "14"
+  },
+  {
+    "equipo_id": 9,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "11"
+  },
+  {
+    "equipo_id": 9,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "110"
+  },
+  {
+    "equipo_id": 10,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN FISHING NECK",
+    "cantidad": "1",
+    "referencia": "3/16\""
+  },
+  {
+    "equipo_id": 10,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN DEL RETAINERRING",
+    "cantidad": "1",
+    "referencia": "3/16\" X 15/16\""
+  },
+  {
+    "equipo_id": 10,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "14"
+  },
+  {
+    "equipo_id": 10,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "11"
+  },
+  {
+    "equipo_id": 10,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "110"
+  },
+  {
+    "equipo_id": 11,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN FISHING NECK",
+    "cantidad": "1",
+    "referencia": "1/4\""
+  },
+  {
+    "equipo_id": 11,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN DEL RETAINERRING",
+    "cantidad": "1",
+    "referencia": "1/4\" X 1 1/4\""
+  },
+  {
+    "equipo_id": 11,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "18"
+  },
+  {
+    "equipo_id": 11,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 11,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "115"
+  },
+  {
+    "equipo_id": 12,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN FISHING NECK",
+    "cantidad": "1",
+    "referencia": "1/4\""
+  },
+  {
+    "equipo_id": 12,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN DEL RETAINERRING",
+    "cantidad": "1",
+    "referencia": "1/4\" X 1 1/4\""
+  },
+  {
+    "equipo_id": 12,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "18"
+  },
+  {
+    "equipo_id": 12,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 12,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "115"
+  },
+  {
+    "equipo_id": 13,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN FISHING NECK",
+    "cantidad": "1",
+    "referencia": "1/4\""
+  },
+  {
+    "equipo_id": 13,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN DEL RETAINERRING",
+    "cantidad": "1",
+    "referencia": "1/4\" X 1 1/4\""
+  },
+  {
+    "equipo_id": 13,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "18"
+  },
+  {
+    "equipo_id": 13,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 13,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "115"
+  },
+  {
+    "equipo_id": 14,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN FISHING NECK",
+    "cantidad": "1",
+    "referencia": "1/4\""
+  },
+  {
+    "equipo_id": 14,
+    "grupo": "",
+    "tipo": "BRASS SHEAR PIN DEL RETAINERRING",
+    "cantidad": "1",
+    "referencia": "1/4\" X 1 1/4\""
+  },
+  {
+    "equipo_id": 14,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "18"
+  },
+  {
+    "equipo_id": 14,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 14,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "115"
+  },
+  {
+    "equipo_id": 15,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "2",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 15,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "120"
+  },
+  {
+    "equipo_id": 15,
+    "grupo": "",
+    "tipo": "ORING (FILL PLUG)",
+    "cantidad": "1",
+    "referencia": "5"
+  },
+  {
+    "equipo_id": 15,
+    "grupo": "",
+    "tipo": "ORING (BALANCE PISTON)",
+    "cantidad": "2",
+    "referencia": "214"
+  },
+  {
+    "equipo_id": 15,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "1",
+    "referencia": "122"
+  },
+  {
+    "equipo_id": 15,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "217"
+  },
+  {
+    "equipo_id": 15,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "316"
+  },
+  {
+    "equipo_id": 16,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "2",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 16,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "120"
+  },
+  {
+    "equipo_id": 16,
+    "grupo": "",
+    "tipo": "ORING (FILL PLUG)",
+    "cantidad": "1",
+    "referencia": "5"
+  },
+  {
+    "equipo_id": 16,
+    "grupo": "",
+    "tipo": "ORING (BALANCE PISTON)",
+    "cantidad": "2",
+    "referencia": "214"
+  },
+  {
+    "equipo_id": 16,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "1",
+    "referencia": "122"
+  },
+  {
+    "equipo_id": 16,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "217"
+  },
+  {
+    "equipo_id": 16,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "316"
+  },
+  {
+    "equipo_id": 17,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "2",
+    "referencia": "210"
+  },
+  {
+    "equipo_id": 17,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "119"
+  },
+  {
+    "equipo_id": 17,
+    "grupo": "",
+    "tipo": "ORING (FILL PLUG)",
+    "cantidad": "1",
+    "referencia": "5"
+  },
+  {
+    "equipo_id": 17,
+    "grupo": "",
+    "tipo": "ORING (BALANCE PISTON)",
+    "cantidad": "2",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 17,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "1",
+    "referencia": "120"
+  },
+  {
+    "equipo_id": 17,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 17,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "314"
+  },
+  {
+    "equipo_id": 18,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "2",
+    "referencia": "210"
+  },
+  {
+    "equipo_id": 18,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "119"
+  },
+  {
+    "equipo_id": 18,
+    "grupo": "",
+    "tipo": "ORING (FILL PLUG)",
+    "cantidad": "1",
+    "referencia": "5"
+  },
+  {
+    "equipo_id": 18,
+    "grupo": "",
+    "tipo": "ORING (BALANCE PISTON)",
+    "cantidad": "2",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 18,
+    "grupo": "",
+    "tipo": "ORING (MIDDLE BODY INSER SEAL)",
+    "cantidad": "1",
+    "referencia": "120"
+  },
+  {
+    "equipo_id": 18,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 18,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "314"
+  },
+  {
+    "equipo_id": 19,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "115"
+  },
+  {
+    "equipo_id": 19,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "112"
+  },
+  {
+    "equipo_id": 20,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "18"
+  },
+  {
+    "equipo_id": 20,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 21,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "5"
+  },
+  {
+    "equipo_id": 21,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "7"
+  },
+  {
+    "equipo_id": 21,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "112"
+  },
+  {
+    "equipo_id": 21,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "210"
+  },
+  {
+    "equipo_id": 21,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "211"
+  },
+  {
+    "equipo_id": 21,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 22,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "18"
+  },
+  {
+    "equipo_id": 22,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 22,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "115"
+  },
+  {
+    "equipo_id": 23,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "5"
+  },
+  {
+    "equipo_id": 23,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "7"
+  },
+  {
+    "equipo_id": 23,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "112"
+  },
+  {
+    "equipo_id": 23,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "210"
+  },
+  {
+    "equipo_id": 23,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 23,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "218"
+  },
+  {
+    "equipo_id": 24,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "14"
+  },
+  {
+    "equipo_id": 24,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "11"
+  },
+  {
+    "equipo_id": 24,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "110"
+  },
+  {
+    "equipo_id": 25,
+    "grupo": "",
+    "tipo": "VEE PACKING",
+    "cantidad": "2.75",
+    "referencia": "4"
+  },
+  {
+    "equipo_id": 25,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "205"
+  },
+  {
+    "equipo_id": 25,
+    "grupo": "",
+    "tipo": "SEATRING",
+    "cantidad": "1",
+    "referencia": "594"
+  },
+  {
+    "equipo_id": 26,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "7"
+  },
+  {
+    "equipo_id": 26,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "112"
+  },
+  {
+    "equipo_id": 26,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "216"
+  },
+  {
+    "equipo_id": 26,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "219"
+  },
+  {
+    "equipo_id": 26,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "221"
+  },
+  {
+    "equipo_id": 26,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "222"
+  },
+  {
+    "equipo_id": 27,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "5"
+  },
+  {
+    "equipo_id": 27,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "7"
+  },
+  {
+    "equipo_id": 27,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "112"
+  },
+  {
+    "equipo_id": 27,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 27,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 27,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "218"
+  },
+  {
+    "equipo_id": 28,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "320"
+  },
+  {
+    "equipo_id": 28,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "341"
+  },
+  {
+    "equipo_id": 28,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 28,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "111"
+  },
+  {
+    "equipo_id": 28,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "17"
+  },
+  {
+    "equipo_id": 28,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "10"
+  },
+  {
+    "equipo_id": 28,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 29,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "153"
+  },
+  {
+    "equipo_id": 29,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 29,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "252"
+  },
+  {
+    "equipo_id": 29,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "9"
+  },
+  {
+    "equipo_id": 29,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "254"
+  },
+  {
+    "equipo_id": 29,
+    "grupo": "",
+    "tipo": "FLAPPER",
+    "cantidad": "2",
+    "referencia": "AISI 4130"
+  },
+  {
+    "equipo_id": 29,
+    "grupo": "",
+    "tipo": "RESORTE",
+    "cantidad": "2",
+    "referencia": "STEEL"
+  },
+  {
+    "equipo_id": 30,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "220"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "213"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "ELASTÓMERO",
+    "cantidad": "7",
+    "referencia": "ELEMENT PACKING"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "BRONCE",
+    "cantidad": "1",
+    "referencia": "GLAND NUT"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "BRONCE",
+    "cantidad": "1",
+    "referencia": "BLOW OUT GLAND NUT"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "BRONCE",
+    "cantidad": "1",
+    "referencia": "LOWER PACKING GLAND"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "BRONCE",
+    "cantidad": "1",
+    "referencia": "GLAND"
+  },
+  {
+    "equipo_id": 31,
+    "grupo": "",
+    "tipo": "BRONCE",
+    "cantidad": "1",
+    "referencia": "SPRING"
+  },
+  {
+    "equipo_id": 32,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 32,
+    "grupo": "",
+    "tipo": "PRISIONERO BRISTOL",
+    "cantidad": "2",
+    "referencia": "1/4- 20 UNC X 1/2"
+  },
+  {
+    "equipo_id": 33,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 33,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "237"
+  },
+  {
+    "equipo_id": 34,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "242"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "224"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "241"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "238"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "114"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "Bristol Screw",
+    "cantidad": "4",
+    "referencia": "3/8-16 UNC x 0,75 Long"
+  },
+  {
+    "equipo_id": 35,
+    "grupo": "",
+    "tipo": "Bristol Set Screw",
+    "cantidad": "12",
+    "referencia": "1/4-20 UNC x 0,38 Long"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "336"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "345"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "8",
+    "referencia": "116"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "9",
+    "referencia": "224"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "226"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "LINE WIPER",
+    "cantidad": "",
+    "referencia": "ADVISORY"
+  },
+  {
+    "equipo_id": 36,
+    "grupo": "",
+    "tipo": "PACK OFF",
+    "cantidad": "",
+    "referencia": "ADVISORY"
+  },
+  {
+    "equipo_id": 37,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": ""
+  },
+  {
+    "equipo_id": 37,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": ""
+  },
+  {
+    "equipo_id": 37,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": ""
+  },
+  {
+    "equipo_id": 37,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": ""
+  },
+  {
+    "equipo_id": 37,
+    "grupo": "",
+    "tipo": "BALINERAS",
+    "cantidad": "4",
+    "referencia": "GB/T307.1"
+  },
+  {
+    "equipo_id": 38,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "237"
+  },
+  {
+    "equipo_id": 38,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 38,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "114"
+  },
+  {
+    "equipo_id": 38,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "10"
+  },
+  {
+    "equipo_id": 38,
+    "grupo": "",
+    "tipo": "BALINERAS",
+    "cantidad": "2",
+    "referencia": "51100"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "229"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "8",
+    "referencia": "211"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "8",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "233"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "345"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "334"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "BACKUP-RING",
+    "cantidad": "1",
+    "referencia": "113"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "BACKUP-RING",
+    "cantidad": "2",
+    "referencia": "345"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "BACKUP-RING",
+    "cantidad": "2",
+    "referencia": "334"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "LINE WIPER",
+    "cantidad": "1",
+    "referencia": "BAOJI JINHUI"
+  },
+  {
+    "equipo_id": 39,
+    "grupo": "",
+    "tipo": "PACK OFF",
+    "cantidad": "1",
+    "referencia": "BAOJI JINHUI"
+  },
+  {
+    "equipo_id": 40,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 40,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "214"
+  },
+  {
+    "equipo_id": 40,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "222"
+  },
+  {
+    "equipo_id": 40,
+    "grupo": "",
+    "tipo": "PACKING SEAL",
+    "cantidad": "5",
+    "referencia": "0.125\""
+  },
+  {
+    "equipo_id": 41,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 41,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 42,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 42,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "342"
+  },
+  {
+    "equipo_id": 42,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "117"
+  },
+  {
+    "equipo_id": 42,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "111"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "342"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "214"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "214"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "120"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "111"
+  },
+  {
+    "equipo_id": 43,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "10"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "8",
+    "referencia": "210"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "211"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "8",
+    "referencia": "224"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "345"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "BACK-UP RING",
+    "cantidad": "2",
+    "referencia": "345"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "LINE WIPER",
+    "cantidad": "1",
+    "referencia": "VEXAH"
+  },
+  {
+    "equipo_id": 44,
+    "grupo": "",
+    "tipo": "PACK OFF",
+    "cantidad": "1",
+    "referencia": "VEXAH"
+  },
+  {
+    "equipo_id": 45,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "226"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "125"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "120"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "320"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "VEE PACKING",
+    "cantidad": "6",
+    "referencia": "1.5"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "226"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "BRAZO DE BOP",
+    "tipo": "BACKUP RING",
+    "cantidad": "8",
+    "referencia": "4"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "ECUALIZADOR",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "238"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "ECUALIZADOR",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "ECUALIZADOR",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "211"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "ECUALIZADOR",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "112"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "ECUALIZADOR",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "1"
+  },
+  {
+    "equipo_id": 46,
+    "grupo": "ECUALIZADOR",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "9"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "237"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "339"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "319"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "237"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "339"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "319"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "210"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "9"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "11"
+  },
+  {
+    "equipo_id": 47,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "114"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "8",
+    "referencia": "210"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "8",
+    "referencia": "224"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "211"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "333"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "330"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "336"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "332"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "1",
+    "referencia": "333"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "330"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "4",
+    "referencia": "336"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "1",
+    "referencia": "332"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "1",
+    "referencia": "212"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "LINE WIPER",
+    "cantidad": "1",
+    "referencia": "ENVIRO"
+  },
+  {
+    "equipo_id": 48,
+    "grupo": "",
+    "tipo": "PACK OFF ENVIRO",
+    "cantidad": "1",
+    "referencia": "ENVIRO"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "9"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "111"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "114"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "238"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "121"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "125"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "336"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "9"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "114"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "238"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "4",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 49,
+    "grupo": "",
+    "tipo": "VEE- PACKING NITRILO",
+    "cantidad": "6",
+    "referencia": "15"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "239"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "121"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "125"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "2",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "9"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "ORING",
+    "cantidad": "4",
+    "referencia": "114"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "4",
+    "referencia": "9"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "4",
+    "referencia": "114"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "1",
+    "referencia": "340"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "239"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "1",
+    "referencia": "215"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "BACKUP RING",
+    "cantidad": "2",
+    "referencia": "236"
+  },
+  {
+    "equipo_id": 50,
+    "grupo": "",
+    "tipo": "VEE PACKING NITRILO",
+    "cantidad": "6",
+    "referencia": "1.5"
+  }
+]

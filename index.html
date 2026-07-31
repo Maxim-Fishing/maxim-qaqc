@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAXIM · QA/QC Insumos</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <section class="intro">
+    <!-- VIDEO DE FONDO:
+         Coloca tu video en assets/video/fondo.mp4 y se reproducira automaticamente.
+         Si no existe, se muestra el fondo degradado de respaldo. -->
+    <video id="bgvideo" autoplay muted loop playsinline preload="auto" poster="assets/img/poster.jpg">
+      <source src="assets/video/fondo.mp4" type="video/mp4" />
+    </video>
+    <div class="fallback"></div>
+    <div class="overlay"></div>
+
+    <div class="contenido">
+      <img class="logo-intro" src="assets/img/logo-blanco.png" alt="Maxim Fishing Solutions Provide S.A.S." />
+      <p class="tag">QA / QC · Insumos</p>
+      <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="login.html">Entrar</a>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Forzar reproduccion (algunos navegadores no autoarrancan solos)
+    (function () {
+      var v = document.getElementById('bgvideo');
+      if (!v) return;
+      var intentar = function () { var p = v.play(); if (p && p.catch) p.catch(function(){}); };
+      v.addEventListener('canplay', intentar);
+      document.addEventListener('click', intentar, { once: true });
+      document.addEventListener('touchstart', intentar, { once: true });
+      intentar();
+    })();
+  </script>
+</body>
+</html>

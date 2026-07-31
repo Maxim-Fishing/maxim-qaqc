@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAXIM · QA/QC Insumos</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="app.html" class="logo-top"><img src="assets/img/logo-blanco.png" alt="Maxim Fishing" /></a>
+    <div class="user">
+      <span id="demo-pill" class="pill" style="display:none;background:rgba(245,165,36,.15);color:var(--acento-2);border:1px solid rgba(245,165,36,.3)">DEMO</span>
+      <span id="rol-pill" class="pill"></span>
+      <span id="nombre-user"></span>
+      <button class="btn sec mini" onclick="salir()">Salir</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- ================= SIDEBAR: filtros + lista ================= -->
+    <aside class="sidebar" id="sidebar">
+      <div class="filtros">
+        <div class="seg" id="seg-cat">
+          <button class="on" data-cat="">Todo</button>
+          <button data-cat="HTA">Herramientas</button>
+          <button data-cat="PCE">Equipos</button>
+        </div>
+        <select id="filtro-fab"><option value="">Todos los fabricantes</option></select>
+        <div class="buscar"><input id="buscar" type="text" placeholder="Buscar por nombre, medida…" /></div>
+        <button class="btn editor-only mini" style="width:100%" onclick="abrirModalEquipo()">+ Nuevo equipo</button>
+      </div>
+      <div class="lista" id="lista"></div>
+    </aside>
+
+    <!-- ================= MAIN: detalle ================= -->
+    <main class="main" id="main">
+      <div class="vacio" id="vacio">
+        <div>
+          <div class="ic">🛠️</div>
+          <p>Selecciona un equipo o herramienta<br>para ver sus consumibles y ficha técnica.</p>
+        </div>
+      </div>
+
+      <div id="detalle" style="display:none">
+        <button class="btn ghost mini volver-lista" onclick="volverLista()" style="margin-bottom:.6rem">← Lista</button>
+        <div class="detalle-head">
+          <div>
+            <h1 id="d-nombre"></h1>
+            <div class="meta" id="d-meta"></div>
+          </div>
+          <div class="acciones">
+            <button class="btn sec mini editor-only" onclick="abrirModalEquipo(true)">Editar datos</button>
+            <button class="btn mini editor-only" onclick="abrirModalConsumible()">+ Consumible</button>
+          </div>
+        </div>
+
+        <div class="tabla-wrap">
+          <table>
+            <thead><tr>
+              <th>Tipo</th><th>Cantidad</th><th>Referencia</th><th class="editor-only">Acciones</th>
+            </tr></thead>
+            <tbody id="d-tabla"></tbody>
+          </table>
+        </div>
+
+        <div class="ficha-box">
+          <div class="cab">
+            <span class="t">📄 Ficha técnica</span>
+            <span id="ficha-nombre" style="color:var(--texto-tenue);font-size:.82rem"></span>
+            <div class="acc">
+              <a id="ficha-abrir" class="btn sec mini" target="_blank" style="display:none">Abrir en pantalla completa</a>
+              <label class="btn mini editor-only" style="margin:0">
+                <span id="ficha-btn-txt">Subir PDF</span>
+                <input id="ficha-file" type="file" accept="application/pdf" style="display:none" onchange="subirFicha(this)" />
+              </label>
+            </div>
+          </div>
+          <div id="ficha-cont">
+            <div class="ficha-none">No hay ficha técnica cargada para este equipo.</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ================= MODAL equipo ================= -->
+  <div class="modal-bg" id="modal-equipo">
+    <div class="modal">
+      <div class="cab"><h3 id="modal-equipo-titulo">Nuevo equipo</h3><button class="x" onclick="cerrar('modal-equipo')">×</button></div>
+      <div class="cuerpo">
+        <div class="row2">
+          <div><label>Categoría</label>
+            <select id="e-categoria"><option value="PCE">Equipo (PCE)</option><option value="HTA">Herramienta (HTA)</option></select></div>
+          <div><label>Familia</label><input id="e-familia" placeholder="Ej: BOP" /></div>
+        </div>
+        <label>Nombre</label><input id="e-nombre" placeholder="Ej: BOP 3 1/2 PSI" />
+        <div class="row2">
+          <div><label>Medida</label><input id="e-medida" placeholder='Ej: 3 1/2"' /></div>
+          <div><label>Fabricante</label><input id="e-fabricante" placeholder="Ej: PSI" /></div>
+        </div>
+      </div>
+      <div class="pie">
+        <button class="btn sec" onclick="cerrar('modal-equipo')">Cancelar</button>
+        <button class="btn" onclick="guardarEquipo()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL consumible ================= -->
+  <div class="modal-bg" id="modal-consumible">
+    <div class="modal">
+      <div class="cab"><h3 id="modal-cons-titulo">Nuevo consumible</h3><button class="x" onclick="cerrar('modal-consumible')">×</button></div>
+      <div class="cuerpo">
+        <label>Grupo (opcional)</label><input id="c-grupo" placeholder="Ej: BRAZO DE BOP" />
+        <label>Tipo</label><input id="c-tipo" placeholder="Ej: ORING" />
+        <div class="row2">
+          <div><label>Cantidad</label><input id="c-cantidad" placeholder="Ej: 2" /></div>
+          <div><label>Referencia</label><input id="c-referencia" placeholder="Ej: 340" /></div>
+        </div>
+      </div>
+      <div class="pie">
+        <button class="btn danger mini" id="c-borrar" style="margin-right:auto;display:none" onclick="borrarConsumible()">Borrar</button>
+        <button class="btn sec" onclick="cerrar('modal-consumible')">Cancelar</button>
+        <button class="btn" onclick="guardarConsumible()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
