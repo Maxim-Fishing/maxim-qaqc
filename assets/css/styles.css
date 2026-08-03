@@ -95,8 +95,8 @@ button{font-family:inherit;cursor:pointer}
   background:linear-gradient(180deg,rgba(6,9,14,.42),rgba(6,9,14,.68))}
 /* tarjeta muy translucida (vidrio esmerilado): deja lucir el cable detras.
    El desenfoque fuerte + sombra de texto mantienen legible el formulario. */
-.centro .card{background:rgba(16,23,36,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border-color:rgba(255,255,255,.14);box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.centro .card{background:rgba(14,16,20,.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-color:rgba(255,255,255,.16);box-shadow:0 20px 60px rgba(0,0,0,.55)}
 .centro .card h2,.centro .card .sub,.centro .card label{text-shadow:0 1px 3px rgba(0,0,0,.55)}
 .centro .card input{background:rgba(9,13,20,.55)}
 .card{
