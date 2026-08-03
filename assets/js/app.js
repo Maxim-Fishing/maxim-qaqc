@@ -70,6 +70,7 @@ function render() {
       <span class="n">${esc(e.nombre)}</span>
       <span class="m">
         <span class="tag-cat ${e.categoria}">${e.categoria}</span>
+        ${e.certificado ? `<span class="tag-cert">CERTIFICADO</span>` : ""}
         ${e.medida ? `<span>${esc(e.medida)}</span>` : ""}
         ${e.fabricante ? `<span>· ${esc(e.fabricante)}</span>` : ""}
         ${e.ficha_tecnica || e.ficha_tecnica_url ? `<span title="Tiene ficha">📄</span>` : ""}
@@ -87,6 +88,7 @@ function seleccionar(id) {
 
   $("d-nombre").textContent = seleccionado.nombre;
   $("d-meta").innerHTML = [
+    seleccionado.certificado ? `<span class="chip chip-cert">✓ CERTIFICADO</span>` : "",
     `<span class="chip">${seleccionado.categoria === "HTA" ? "Herramienta" : "Equipo de presión"}</span>`,
     seleccionado.familia ? `<span class="chip">${esc(seleccionado.familia)}</span>` : "",
     seleccionado.medida ? `<span class="chip">${esc(seleccionado.medida)}</span>` : "",
@@ -152,6 +154,7 @@ function abrirModalEquipo(editar) {
   $("e-nombre").value = e.nombre || "";
   $("e-medida").value = e.medida || "";
   $("e-fabricante").value = e.fabricante || "";
+  $("e-certificado").checked = !!(editar && e.certificado);
   $("modal-equipo").dataset.id = editar ? e.id : "";
   abrir("modal-equipo");
 }
@@ -161,7 +164,8 @@ async function guardarEquipo() {
     id: id ? Number(id) : null,
     categoria: $("e-categoria").value, familia: $("e-familia").value.trim(),
     nombre: $("e-nombre").value.trim(), medida: $("e-medida").value.trim(),
-    fabricante: $("e-fabricante").value.trim()
+    fabricante: $("e-fabricante").value.trim(),
+    certificado: $("e-certificado").checked
   };
   if (!eq.nombre) { toast("El nombre es obligatorio.", false); return; }
   try {

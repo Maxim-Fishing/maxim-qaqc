@@ -11,6 +11,7 @@ create table if not exists public.equipos (
     nombre            text not null,                  -- nombre visible
     medida            text,                           -- ej. 3 1/2"
     fabricante        text,
+    certificado       boolean not null default false, -- equipo certificado (sello verde)
     ficha_tecnica_url text,                           -- URL publica del PDF en Storage
     ficha_tecnica_nombre text,                        -- nombre del archivo PDF
     hoja_origen       text,                           -- hoja del Excel de origen (trazabilidad)

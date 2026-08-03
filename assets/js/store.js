@@ -73,7 +73,8 @@
     if (DEMO) throw new Error("Modo demo: conecta Supabase para guardar cambios.");
     const payload = {
       categoria: equipo.categoria, familia: equipo.familia, nombre: equipo.nombre,
-      medida: equipo.medida, fabricante: equipo.fabricante
+      medida: equipo.medida, fabricante: equipo.fabricante,
+      certificado: !!equipo.certificado
     };
     if (equipo.id) {
       const { error } = await sb.from("equipos").update(payload).eq("id", equipo.id);
