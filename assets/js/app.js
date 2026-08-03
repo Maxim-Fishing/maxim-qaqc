@@ -27,7 +27,8 @@ const $ = (id) => document.getElementById(id);
   document.querySelectorAll("#seg-cat button").forEach(b => {
     b.onclick = () => {
       document.querySelectorAll("#seg-cat button").forEach(x => x.classList.remove("on"));
-      b.classList.add("on"); filtro.cat = b.dataset.cat; render();
+      b.classList.add("on"); filtro.cat = b.dataset.cat;
+      poblarFabricantes(); render();
     };
   });
   $("filtro-fab").onchange = (e) => { filtro.fab = e.target.value; render(); };
@@ -39,15 +40,22 @@ const $ = (id) => document.getElementById(id);
 async function cargar() {
   try {
     EQUIPOS = await Store.getEquipos();
-    // poblar fabricantes
-    const fabs = [...new Set(EQUIPOS.map(e => e.fabricante).filter(Boolean))].sort();
-    const sel = $("filtro-fab");
-    sel.innerHTML = '<option value="">Todos los fabricantes</option>' +
-      fabs.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join("");
+    poblarFabricantes();
     render();
   } catch (e) {
     toast("Error cargando datos: " + (e.message || e), false);
   }
+}
+
+// Rellena el desplegable de fabricantes SOLO con los de la categoria activa
+function poblarFabricantes() {
+  const sel = $("filtro-fab");
+  const base = EQUIPOS.filter(e => !filtro.cat || e.categoria === filtro.cat);
+  const fabs = [...new Set(base.map(e => e.fabricante).filter(Boolean))].sort();
+  // si el fabricante elegido ya no aplica a la categoria, se limpia
+  if (filtro.fab && !fabs.includes(filtro.fab)) filtro.fab = "";
+  sel.innerHTML = '<option value="">Todos los fabricantes</option>' +
+    fabs.map(f => `<option value="${esc(f)}" ${f === filtro.fab ? "selected" : ""}>${esc(f)}</option>`).join("");
 }
 
 // ---------- Render lista ----------
