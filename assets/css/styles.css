@@ -92,9 +92,10 @@ button{font-family:inherit;cursor:pointer}
 .login-bg-fallback{z-index:-3;background:radial-gradient(1000px 700px at 30% 15%,#1a2740,#0b0f14)}
 .login-bg{z-index:-2}
 .login-bg-overlay{position:fixed;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(6,9,14,.72),rgba(6,9,14,.88))}
-/* la tarjeta un poco translucida para dejar ver el ambiente detras */
-.centro .card{background:rgba(21,29,43,.92);backdrop-filter:blur(6px)}
+  background:linear-gradient(180deg,rgba(6,9,14,.55),rgba(6,9,14,.78))}
+/* tarjeta translucida tipo vidrio esmerilado: deja ver el video detras (importante en movil) */
+.centro .card{background:rgba(18,26,40,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-color:rgba(255,255,255,.10)}
 .card{
   width:100%;max-width:440px;background:var(--panel);border:1px solid var(--borde);
   border-radius:var(--radio);box-shadow:var(--sombra);padding:2rem 1.8rem;
