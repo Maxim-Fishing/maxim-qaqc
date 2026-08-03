@@ -92,10 +92,13 @@ button{font-family:inherit;cursor:pointer}
 .login-bg-fallback{z-index:-3;background:radial-gradient(1000px 700px at 30% 15%,#1a2740,#0b0f14)}
 .login-bg{z-index:-2}
 .login-bg-overlay{position:fixed;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(6,9,14,.55),rgba(6,9,14,.78))}
-/* tarjeta translucida tipo vidrio esmerilado: deja ver el video detras (importante en movil) */
-.centro .card{background:rgba(18,26,40,.62);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-color:rgba(255,255,255,.10)}
+  background:linear-gradient(180deg,rgba(6,9,14,.42),rgba(6,9,14,.68))}
+/* tarjeta muy translucida (vidrio esmerilado): deja lucir el cable detras.
+   El desenfoque fuerte + sombra de texto mantienen legible el formulario. */
+.centro .card{background:rgba(16,23,36,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-color:rgba(255,255,255,.14);box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.centro .card h2,.centro .card .sub,.centro .card label{text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.centro .card input{background:rgba(9,13,20,.55)}
 .card{
   width:100%;max-width:440px;background:var(--panel);border:1px solid var(--borde);
   border-radius:var(--radio);box-shadow:var(--sombra);padding:2rem 1.8rem;
