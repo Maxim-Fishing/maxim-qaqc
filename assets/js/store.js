@@ -85,6 +85,12 @@
     }
   }
 
+  async function borrarEquipo(id) {
+    if (DEMO) throw new Error("Modo demo: conecta Supabase para eliminar.");
+    const { error } = await sb.from("equipos").delete().eq("id", id);
+    if (error) throw error;
+  }
+
   async function guardarConsumible(c) {
     if (DEMO) throw new Error("Modo demo: conecta Supabase para guardar cambios.");
     const payload = { equipo_id: c.equipo_id, grupo: c.grupo || null, tipo: c.tipo, cantidad: c.cantidad, referencia: c.referencia };
@@ -119,6 +125,6 @@
   window.Store = {
     DEMO, getSesion, setSesion, limpiarSesion,
     loginVisor, loginEditor, logout,
-    getEquipos, guardarEquipo, guardarConsumible, borrarConsumible, subirFicha
+    getEquipos, guardarEquipo, borrarEquipo, guardarConsumible, borrarConsumible, subirFicha
   };
 })();

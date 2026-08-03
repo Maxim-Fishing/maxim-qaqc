@@ -163,8 +163,25 @@ function abrirModalEquipo(editar) {
   $("e-medida").value = e.medida || "";
   $("e-fabricante").value = e.fabricante || "";
   $("e-certificado").checked = !!(editar && e.certificado);
+  $("e-borrar").style.display = editar ? "inline-flex" : "none";
   $("modal-equipo").dataset.id = editar ? e.id : "";
   abrir("modal-equipo");
+}
+
+async function borrarEquipo() {
+  const id = $("modal-equipo").dataset.id;
+  if (!id) return;
+  const nombre = seleccionado ? seleccionado.nombre : "este equipo";
+  if (!confirm(`¿Eliminar "${nombre}" y todos sus consumibles?\nEsta acción no se puede deshacer.`)) return;
+  try {
+    await Store.borrarEquipo(Number(id));
+    cerrar("modal-equipo");
+    toast("Equipo eliminado.", true);
+    seleccionado = null;
+    $("detalle").style.display = "none";
+    $("vacio").style.display = "grid";
+    await cargar();  // recarga lista y depura el desplegable de fabricantes
+  } catch (e) { toast(e.message, false); }
 }
 async function guardarEquipo() {
   const id = $("modal-equipo").dataset.id;
