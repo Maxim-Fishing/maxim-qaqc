@@ -7,6 +7,15 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
+  <!-- FONDO DE VIDEO DEL LOGIN:
+       Coloca tu video en assets/video/fondo-login.mp4 y se reproducira solo.
+       Si no existe, se muestra el fondo degradado de respaldo. -->
+  <video id="bgvideo" class="login-bg" autoplay muted loop playsinline preload="auto" poster="assets/img/poster.jpg">
+    <source src="assets/video/fondo-login.mp4" type="video/mp4" />
+  </video>
+  <div class="login-bg-fallback"></div>
+  <div class="login-bg-overlay"></div>
+
   <div class="centro">
     <div class="card">
       <div style="text-align:center;margin-bottom:1.4rem">
@@ -50,6 +59,13 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/store.js"></script>
   <script>
+    // Forzar reproduccion del video de fondo (algunos navegadores no autoarrancan)
+    (function () {
+      var v = document.getElementById('bgvideo');
+      if (v) { var p = function(){ var r=v.play(); if(r&&r.catch) r.catch(function(){}); };
+        v.addEventListener('canplay', p); document.addEventListener('click', p, {once:true}); p(); }
+    })();
+
     if (window.APP_CONFIG.DEMO) document.getElementById('demo').style.display = 'inline-block';
 
     function cambiarTab(t) {
