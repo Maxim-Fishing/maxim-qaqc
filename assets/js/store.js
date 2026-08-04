@@ -122,9 +122,59 @@
     return { url, nombre: file.name };
   }
 
+  // ---------- Solicitudes de edicion (flujo de aprobacion) ----------
+  async function crearSolicitud(sol) {
+    if (DEMO) throw new Error("Modo demo: conecta Supabase.");
+    const { error } = await sb.from("solicitudes").insert({
+      tipo: sol.tipo,
+      equipo_id: sol.equipo_id ?? null,
+      consumible_id: sol.consumible_id ?? null,
+      solicitante: sol.solicitante || "Anónimo",
+      antes: sol.antes ?? null,
+      propuesta: sol.propuesta ?? null,
+      estado: "pendiente"
+    });
+    if (error) throw error;
+  }
+
+  async function getSolicitudes(estado) {
+    if (DEMO) return [];
+    let q = sb.from("solicitudes").select("*").order("creado_at", { ascending: true });
+    if (estado) q = q.eq("estado", estado);
+    const { data, error } = await q;
+    if (error) throw error;
+    return data || [];
+  }
+
+  async function resolverSolicitud(sol, aprobar, editor) {
+    if (DEMO) throw new Error("Modo demo.");
+    if (aprobar) {
+      if (sol.tipo === "editar_equipo") {
+        const { error } = await sb.from("equipos").update(sol.propuesta).eq("id", sol.equipo_id);
+        if (error) throw error;
+      } else if (sol.tipo === "agregar_consumible") {
+        const { error } = await sb.from("consumibles").insert({ ...sol.propuesta, equipo_id: sol.equipo_id });
+        if (error) throw error;
+      } else if (sol.tipo === "editar_consumible") {
+        const { error } = await sb.from("consumibles").update(sol.propuesta).eq("id", sol.consumible_id);
+        if (error) throw error;
+      } else if (sol.tipo === "eliminar_consumible") {
+        const { error } = await sb.from("consumibles").delete().eq("id", sol.consumible_id);
+        if (error) throw error;
+      }
+    }
+    const { error } = await sb.from("solicitudes").update({
+      estado: aprobar ? "aprobada" : "rechazada",
+      resuelto_por: editor || null,
+      resuelto_at: new Date().toISOString()
+    }).eq("id", sol.id);
+    if (error) throw error;
+  }
+
   window.Store = {
     DEMO, getSesion, setSesion, limpiarSesion,
     loginVisor, loginEditor, logout,
-    getEquipos, guardarEquipo, borrarEquipo, guardarConsumible, borrarConsumible, subirFicha
+    getEquipos, guardarEquipo, borrarEquipo, guardarConsumible, borrarConsumible, subirFicha,
+    crearSolicitud, getSolicitudes, resolverSolicitud
   };
 })();

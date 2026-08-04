@@ -210,6 +210,25 @@ tbody tr:hover{background:var(--panel)}
 
 .editor-only{display:none}
 body.rol-editor .editor-only{display:inline-flex}
+/* controles disponibles para editor Y visor (el visor genera solicitudes) */
+.editable{display:none}
+body.rol-editor .editable,body.rol-visor .editable{display:inline-flex}
+
+/* contador de solicitudes */
+.count-badge{background:var(--acento);color:#1a1206;border-radius:999px;padding:.02rem .42rem;
+  font-size:.72rem;font-weight:800;margin-left:.4rem;line-height:1.4}
+
+/* panel de solicitudes */
+.sol-item{border:1px solid var(--borde);border-radius:10px;padding:.8rem .9rem;margin-bottom:.7rem;background:var(--panel-2)}
+.sol-item .who{font-size:.8rem;color:var(--texto-tenue);margin-bottom:.4rem}
+.sol-item .diff{font-size:.9rem}
+.sol-item .diff b{color:var(--acento-2)}
+.sol-item .dl{margin-top:.3rem;font-size:.85rem}
+.sol-item .dl .k{color:var(--texto-tenue);text-transform:capitalize}
+.sol-item .old{color:#ffb0b0;text-decoration:line-through}
+.sol-item .new{color:#9dead0}
+.sol-acc{display:flex;gap:.5rem;margin-top:.7rem}
+.btn.ok{background:var(--ok);color:#04120c;box-shadow:none}
 
 .toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:var(--panel-2);
   border:1px solid var(--borde);padding:.8rem 1.2rem;border-radius:10px;box-shadow:var(--sombra);

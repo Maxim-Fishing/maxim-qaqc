@@ -5,6 +5,7 @@ let EQUIPOS = [];
 let filtro = { cat: "", fab: "", texto: "" };
 let seleccionado = null;
 let editandoConsumible = null;
+let SESION = null, ROL = "visor";
 
 const $ = (id) => document.getElementById(id);
 
@@ -12,6 +13,7 @@ const $ = (id) => document.getElementById(id);
 (async function init() {
   const s = Store.getSesion();
   if (!s) { location.href = "login.html"; return; }
+  SESION = s; ROL = s.rol;
 
   $("nombre-user").textContent = s.nombre;
   const pill = $("rol-pill");
@@ -20,6 +22,7 @@ const $ = (id) => document.getElementById(id);
     document.body.classList.add("rol-editor");
   } else {
     pill.textContent = "VISOR"; pill.className = "pill visor";
+    document.body.classList.add("rol-visor");
   }
   if (Store.DEMO) $("demo-pill").style.display = "inline-block";
 
@@ -35,6 +38,7 @@ const $ = (id) => document.getElementById(id);
   $("buscar").oninput = (e) => { filtro.texto = e.target.value.toLowerCase(); render(); };
 
   await cargar();
+  if (ROL === "editor") cargarConteoSolicitudes();
 })();
 
 async function cargar() {
@@ -121,7 +125,7 @@ function renderTabla() {
       <td>${esc(c.tipo)}</td>
       <td>${esc(c.cantidad || "")}</td>
       <td>${esc(c.referencia || "")}</td>
-      <td class="editor-only">
+      <td>
         <button class="btn ghost mini" onclick='abrirModalConsumible(${JSON.stringify(c).replace(/'/g, "&#39;")})'>✎</button>
       </td>
     </tr>`;
@@ -156,14 +160,16 @@ function volverLista() {
 // ---------- Edicion: equipo ----------
 function abrirModalEquipo(editar) {
   const e = editar ? seleccionado : { categoria: "PCE", familia: "", nombre: "", medida: "", fabricante: "" };
-  $("modal-equipo-titulo").textContent = editar ? "Editar equipo" : "Nuevo equipo";
+  const esEd = ROL === "editor";
+  $("modal-equipo-titulo").textContent = esEd ? (editar ? "Editar equipo" : "Nuevo equipo") : "Solicitar cambios del equipo";
+  $("btn-guardar-equipo").textContent = esEd ? "Guardar" : "Solicitar edición";
   $("e-categoria").value = e.categoria || "PCE";
   $("e-familia").value = e.familia || "";
   $("e-nombre").value = e.nombre || "";
   $("e-medida").value = e.medida || "";
   $("e-fabricante").value = e.fabricante || "";
   $("e-certificado").checked = !!(editar && e.certificado);
-  $("e-borrar").style.display = editar ? "inline-flex" : "none";
+  $("e-borrar").style.display = (editar && esEd) ? "inline-flex" : "none";
   $("modal-equipo").dataset.id = editar ? e.id : "";
   abrir("modal-equipo");
 }
@@ -194,18 +200,29 @@ async function guardarEquipo() {
   };
   if (!eq.nombre) { toast("El nombre es obligatorio.", false); return; }
   try {
-    const nuevoId = await Store.guardarEquipo(eq);
-    cerrar("modal-equipo");
-    toast("Equipo guardado.", true);
-    await cargar();
-    seleccionar(eq.id || nuevoId);
+    if (ROL === "editor") {
+      const nuevoId = await Store.guardarEquipo(eq);
+      cerrar("modal-equipo");
+      toast("Equipo guardado.", true);
+      await cargar();
+      seleccionar(eq.id || nuevoId);
+    } else {
+      const antes = seleccionado ? { categoria: seleccionado.categoria, familia: seleccionado.familia, nombre: seleccionado.nombre, medida: seleccionado.medida, fabricante: seleccionado.fabricante } : null;
+      const propuesta = { categoria: eq.categoria, familia: eq.familia, nombre: eq.nombre, medida: eq.medida, fabricante: eq.fabricante };
+      await Store.crearSolicitud({ tipo: "editar_equipo", equipo_id: eq.id, solicitante: SESION.nombre, antes, propuesta });
+      cerrar("modal-equipo");
+      toast("Solicitud enviada. Un editor la revisará.", true);
+    }
   } catch (e) { toast(e.message, false); }
 }
 
 // ---------- Edicion: consumible ----------
 function abrirModalConsumible(c) {
   editandoConsumible = c || null;
-  $("modal-cons-titulo").textContent = c ? "Editar consumible" : "Nuevo consumible";
+  const esEd = ROL === "editor";
+  $("modal-cons-titulo").textContent = esEd ? (c ? "Editar consumible" : "Nuevo consumible") : (c ? "Solicitar cambio de consumible" : "Solicitar nuevo consumible");
+  $("btn-guardar-cons").textContent = esEd ? "Guardar" : "Solicitar edición";
+  $("c-borrar").textContent = esEd ? "Borrar" : "Solicitar quitar";
   $("c-grupo").value = c ? (c.grupo || "") : "";
   $("c-tipo").value = c ? c.tipo : "";
   $("c-cantidad").value = c ? (c.cantidad || "") : "";
@@ -222,20 +239,96 @@ async function guardarConsumible() {
   };
   if (!c.tipo) { toast("El tipo es obligatorio.", false); return; }
   try {
-    await Store.guardarConsumible(c);
-    cerrar("modal-consumible");
-    toast("Consumible guardado.", true);
-    await cargar(); seleccionar(seleccionado.id);
+    if (ROL === "editor") {
+      await Store.guardarConsumible(c);
+      cerrar("modal-consumible");
+      toast("Consumible guardado.", true);
+      await cargar(); seleccionar(seleccionado.id);
+    } else {
+      const prop = { tipo: c.tipo, cantidad: c.cantidad, referencia: c.referencia, grupo: c.grupo || null };
+      if (c.id) {
+        const a = editandoConsumible;
+        await Store.crearSolicitud({ tipo: "editar_consumible", equipo_id: seleccionado.id, consumible_id: c.id, solicitante: SESION.nombre, antes: { tipo: a.tipo, cantidad: a.cantidad, referencia: a.referencia }, propuesta: prop });
+      } else {
+        await Store.crearSolicitud({ tipo: "agregar_consumible", equipo_id: seleccionado.id, solicitante: SESION.nombre, propuesta: prop });
+      }
+      cerrar("modal-consumible");
+      toast("Solicitud enviada. Un editor la revisará.", true);
+    }
   } catch (e) { toast(e.message, false); }
 }
 async function borrarConsumible() {
   if (!editandoConsumible || !editandoConsumible.id) return;
-  if (!confirm("¿Borrar este consumible?")) return;
   try {
-    await Store.borrarConsumible(editandoConsumible.id);
-    cerrar("modal-consumible");
-    toast("Consumible borrado.", true);
-    await cargar(); seleccionar(seleccionado.id);
+    if (ROL === "editor") {
+      if (!confirm("¿Borrar este consumible?")) return;
+      await Store.borrarConsumible(editandoConsumible.id);
+      cerrar("modal-consumible");
+      toast("Consumible borrado.", true);
+      await cargar(); seleccionar(seleccionado.id);
+    } else {
+      const a = editandoConsumible;
+      await Store.crearSolicitud({ tipo: "eliminar_consumible", equipo_id: seleccionado.id, consumible_id: a.id, solicitante: SESION.nombre, antes: { tipo: a.tipo, cantidad: a.cantidad, referencia: a.referencia } });
+      cerrar("modal-consumible");
+      toast("Solicitud enviada. Un editor la revisará.", true);
+    }
+  } catch (e) { toast(e.message, false); }
+}
+
+// ---------- Solicitudes de edicion (aprobacion) ----------
+async function cargarConteoSolicitudes() {
+  try {
+    const pend = await Store.getSolicitudes("pendiente");
+    window._solpend = pend;
+    const b = $("sol-count");
+    b.textContent = pend.length;
+    b.style.display = pend.length ? "inline-block" : "none";
+  } catch (e) { /* silencioso */ }
+}
+async function abrirSolicitudes() {
+  await cargarConteoSolicitudes();
+  renderSolicitudes(window._solpend || []);
+  abrir("modal-solicitudes");
+}
+function nombreEquipo(id) { const e = EQUIPOS.find(x => x.id === id); return e ? e.nombre : ("#" + id); }
+function describirSolicitud(s) {
+  const p = s.propuesta || {}, a = s.antes || {};
+  if (s.tipo === "editar_equipo") {
+    const campos = ["nombre", "categoria", "fabricante", "medida", "familia"];
+    const filas = campos.filter(k => (a[k] || "") !== (p[k] || "")).map(k =>
+      `<div class="dl"><span class="k">${k}:</span> <span class="old">${esc(a[k] || "—")}</span> → <span class="new">${esc(p[k] || "—")}</span></div>`).join("");
+    return `<b>Editar equipo</b> · ${esc(nombreEquipo(s.equipo_id))}${filas || "<div class='dl'>(sin cambios)</div>"}`;
+  }
+  if (s.tipo === "agregar_consumible")
+    return `<b>Agregar consumible</b> · ${esc(nombreEquipo(s.equipo_id))}<div class="dl"><span class="new">${esc(p.tipo)} · cant ${esc(p.cantidad || "")} · ref ${esc(p.referencia || "")}</span></div>`;
+  if (s.tipo === "editar_consumible")
+    return `<b>Editar consumible</b> · ${esc(nombreEquipo(s.equipo_id))}<div class="dl"><span class="old">${esc(a.tipo)} · ${esc(a.cantidad || "")} · ${esc(a.referencia || "")}</span> → <span class="new">${esc(p.tipo)} · ${esc(p.cantidad || "")} · ${esc(p.referencia || "")}</span></div>`;
+  if (s.tipo === "eliminar_consumible")
+    return `<b>Quitar consumible</b> · ${esc(nombreEquipo(s.equipo_id))}<div class="dl"><span class="old">${esc(a.tipo)} · ${esc(a.cantidad || "")} · ${esc(a.referencia || "")}</span></div>`;
+  return esc(s.tipo);
+}
+function renderSolicitudes(list) {
+  const cont = $("sol-lista");
+  if (!list.length) { cont.innerHTML = `<p style="color:var(--texto-tenue)">No hay solicitudes pendientes.</p>`; return; }
+  cont.innerHTML = list.map(s => `
+    <div class="sol-item">
+      <div class="who">Solicitado por <b>${esc(s.solicitante)}</b></div>
+      <div class="diff">${describirSolicitud(s)}</div>
+      <div class="sol-acc">
+        <button class="btn ok mini" onclick="resolver(${s.id}, true)">Aprobar</button>
+        <button class="btn danger mini" onclick="resolver(${s.id}, false)">Rechazar</button>
+      </div>
+    </div>`).join("");
+}
+async function resolver(id, aprobar) {
+  const s = (window._solpend || []).find(x => x.id === id); if (!s) return;
+  try {
+    await Store.resolverSolicitud(s, aprobar, SESION.email || SESION.nombre);
+    toast(aprobar ? "Solicitud aprobada." : "Solicitud rechazada.", true);
+    await cargar();
+    await cargarConteoSolicitudes();
+    renderSolicitudes(window._solpend || []);
+    if (seleccionado && EQUIPOS.find(e => e.id === seleccionado.id)) seleccionar(seleccionado.id);
   } catch (e) { toast(e.message, false); }
 }
 
