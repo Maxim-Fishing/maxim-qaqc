@@ -59,7 +59,10 @@
         <div class="tabla-wrap">
           <table>
             <thead><tr>
-              <th>Tipo</th><th>Cantidad</th><th>Referencia</th><th>Acciones</th>
+              <th onclick="ordenarTabla('tipo')" style="cursor:pointer;user-select:none;white-space:nowrap" title="Ordenar por tipo">Tipo<span class="sort-ind" data-col="tipo" style="opacity:.4"> ⇅</span></th>
+              <th onclick="ordenarTabla('cantidad')" style="cursor:pointer;user-select:none;white-space:nowrap" title="Ordenar por cantidad">Cantidad<span class="sort-ind" data-col="cantidad" style="opacity:.4"> ⇅</span></th>
+              <th onclick="ordenarTabla('referencia')" style="cursor:pointer;user-select:none;white-space:nowrap" title="Ordenar por referencia">Referencia<span class="sort-ind" data-col="referencia" style="opacity:.4"> ⇅</span></th>
+              <th>Acciones</th>
             </tr></thead>
             <tbody id="d-tabla"></tbody>
           </table>
