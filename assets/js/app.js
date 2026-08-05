@@ -111,26 +111,84 @@ function seleccionar(id) {
   renderFicha();
 }
 
+// ---------- Orden de la tabla de consumibles ----------
+// Estado del ordenamiento: col = 'tipo' | 'cantidad' | 'referencia' | null
+// dir = 1 (ascendente / menor a mayor)  ·  -1 (descendente / mayor a menor)
+let ordenTabla = { col: null, dir: 1 };
+
+// Alterna el orden al hacer clic en un encabezado (como en Excel).
+function ordenarTabla(col) {
+  if (ordenTabla.col === col) ordenTabla.dir = -ordenTabla.dir;
+  else { ordenTabla.col = col; ordenTabla.dir = 1; }
+  renderTabla();
+}
+
+// Comparador que entiende números (112 < 121 < 212) y texto (A…Z).
+function cmpCampo(a, b) {
+  return String(a == null ? "" : a)
+    .localeCompare(String(b == null ? "" : b), "es", { numeric: true, sensitivity: "base" });
+}
+
+// Refresca las flechas ↑ ↓ ⇅ de los encabezados según el orden activo.
+function actualizarFlechas() {
+  document.querySelectorAll(".sort-ind").forEach(sp => {
+    const col = sp.dataset.col;
+    if (ordenTabla.col === col) {
+      sp.textContent = ordenTabla.dir === 1 ? " ↑" : " ↓";
+      sp.style.color = "var(--acento)";
+      sp.style.opacity = "1";
+    } else {
+      sp.textContent = " ⇅";
+      sp.style.color = "currentColor";
+      sp.style.opacity = ".4";
+    }
+  });
+}
+
 function renderTabla() {
   const tb = $("d-tabla");
   const cons = seleccionado.consumibles || [];
-  if (!cons.length) { tb.innerHTML = `<tr><td colspan="4" style="color:var(--texto-tenue)">Sin consumibles registrados.</td></tr>`; return; }
-  let grupoPrev = null, html = "";
+  if (!cons.length) {
+    tb.innerHTML = `<tr><td colspan="4" style="color:var(--texto-tenue)">Sin consumibles registrados.</td></tr>`;
+    actualizarFlechas();
+    return;
+  }
+
+  // 1) Consolidar por 'grupo': cada grupo aparece UNA sola vez (en el orden en
+  //    que aparece por primera vez) con TODOS sus consumibles juntos debajo.
+  //    Esto corrige que "GENERAL" (u otro grupo) saliera repetido/fragmentado.
+  const ordenGrupos = [];
+  const grupos = new Map();
   cons.forEach(c => {
-    if (c.grupo && c.grupo !== grupoPrev) {
-      grupoPrev = c.grupo;
-      html += `<tr class="grupo-row"><td colspan="4">${esc(c.grupo)}</td></tr>`;
-    }
-    html += `<tr>
-      <td>${esc(c.tipo)}</td>
-      <td>${esc(c.cantidad || "")}</td>
-      <td>${esc(c.referencia || "")}</td>
-      <td>
-        <button class="btn ghost mini" onclick='abrirModalConsumible(${JSON.stringify(c).replace(/'/g, "&#39;")})'>✎</button>
-      </td>
-    </tr>`;
+    const g = c.grupo || "";
+    if (!grupos.has(g)) { grupos.set(g, []); ordenGrupos.push(g); }
+    grupos.get(g).push(c);
+  });
+
+  // 2) Si hay una columna activa, ordenar los consumibles DENTRO de cada grupo.
+  if (ordenTabla.col) {
+    ordenGrupos.forEach(g => {
+      grupos.get(g).sort((x, y) => ordenTabla.dir * cmpCampo(x[ordenTabla.col], y[ordenTabla.col]));
+    });
+  }
+
+  // 3) Render
+  let html = "";
+  ordenGrupos.forEach(g => {
+    if (g) html += `<tr class="grupo-row"><td colspan="4">${esc(g)}</td></tr>`;
+    grupos.get(g).forEach(c => {
+      html += `<tr>
+        <td>${esc(c.tipo)}</td>
+        <td>${esc(c.cantidad || "")}</td>
+        <td>${esc(c.referencia || "")}</td>
+        <td>
+          <button class="btn ghost mini" onclick='abrirModalConsumible(${JSON.stringify(c).replace(/'/g, "&#39;")})'>✎</button>
+        </td>
+      </tr>`;
+    });
   });
   tb.innerHTML = html;
+  actualizarFlechas();
 }
 
 function renderFicha() {
@@ -186,7 +244,7 @@ async function borrarEquipo() {
     seleccionado = null;
     $("detalle").style.display = "none";
     $("vacio").style.display = "grid";
-    await cargar();  // recarga lista y depura el desplegable de fabricantes
+    await cargar();
   } catch (e) { toast(e.message, false); }
 }
 async function guardarEquipo() {
