@@ -22,34 +22,21 @@
         <img src="assets/img/logo-blanco.png" alt="Maxim Fishing" style="height:74px;max-width:100%" />
       </div>
 
-      <div class="tabs">
-        <button id="tab-visor" class="activo" onclick="cambiarTab('visor')">Visualizar</button>
-        <button id="tab-editor" onclick="cambiarTab('editor')">Editar</button>
-      </div>
-
-      <!-- VISUALIZADOR -->
-      <div id="form-visor">
-        <h2>Solo visualizar</h2>
-        <p class="sub">Escribe tu nombre para entrar a consultar equipos, herramientas y fichas técnicas.</p>
-        <label for="nombre">Tu nombre</label>
-        <input id="nombre" type="text" placeholder="Ej: Juan Pérez" autocomplete="name" />
-        <button class="btn" onclick="entrarVisor()">Entrar a consultar</button>
-      </div>
-
-      <!-- EDITOR -->
-      <div id="form-editor" style="display:none">
-        <h2>Acceso editor</h2>
-        <p class="sub">Solo personal autorizado. Requiere usuario y contraseña.</p>
-        <label for="usuario">Usuario</label>
-        <input id="usuario" type="text" placeholder="usuario o correo" autocomplete="username" />
+      <!-- ACCESO ÚNICO · todos ingresan con usuario y contraseña -->
+      <div id="form-login">
+        <h2>Iniciar sesión</h2>
+        <p class="sub">Ingresa con tu usuario y contraseña para acceder a la información. El sistema reconoce automáticamente si eres visor o editor.</p>
+        <label for="usuario">Usuario o correo</label>
+        <input id="usuario" type="text" placeholder="usuario o correo" autocomplete="username"
+               onkeydown="if(event.key==='Enter') document.getElementById('clave').focus()" />
         <label for="clave">Contraseña</label>
         <input id="clave" type="password" placeholder="••••••••" autocomplete="current-password"
-               onkeydown="if(event.key==='Enter') entrarEditor()" />
-        <button class="btn" onclick="entrarEditor()">Ingresar como editor</button>
+               onkeydown="if(event.key==='Enter') entrar()" />
+        <button class="btn" onclick="entrar()">Ingresar</button>
       </div>
 
       <div id="msg" class="msg"></div>
-      <div id="demo" class="demo-badge" style="display:none">MODO DEMO · datos del Excel · editor con clave "demo"</div>
+      <div id="demo" class="demo-badge" style="display:none">MODO DEMO · datos del Excel · claves de prueba "visor" / "editor"</div>
       <a class="volver" href="index.html">← Volver al inicio</a>
     </div>
   </div>
@@ -68,31 +55,19 @@
 
     if (window.APP_CONFIG.DEMO) document.getElementById('demo').style.display = 'inline-block';
 
-    function cambiarTab(t) {
-      document.getElementById('tab-visor').classList.toggle('activo', t === 'visor');
-      document.getElementById('tab-editor').classList.toggle('activo', t === 'editor');
-      document.getElementById('form-visor').style.display = t === 'visor' ? 'block' : 'none';
-      document.getElementById('form-editor').style.display = t === 'editor' ? 'block' : 'none';
-      ocultarMsg();
-    }
     function mostrarMsg(txt, ok) {
       const m = document.getElementById('msg');
       m.textContent = txt; m.className = 'msg ' + (ok ? 'ok' : 'err');
     }
     function ocultarMsg() { document.getElementById('msg').className = 'msg'; }
 
-    async function entrarVisor() {
-      const n = document.getElementById('nombre').value.trim();
-      if (!n) { mostrarMsg('Escribe tu nombre para continuar.'); return; }
-      await Store.loginVisor(n);
-      location.href = 'app.html';
-    }
-    async function entrarEditor() {
+    async function entrar() {
       const u = document.getElementById('usuario').value.trim();
       const c = document.getElementById('clave').value;
       if (!u || !c) { mostrarMsg('Completa usuario y contraseña.'); return; }
+      mostrarMsg('Ingresando…', true);
       try {
-        await Store.loginEditor(u, c);
+        await Store.login(u, c);
         location.href = 'app.html';
       } catch (e) { mostrarMsg(e.message || 'No se pudo ingresar.'); }
     }

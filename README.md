@@ -3,16 +3,23 @@
 Aplicación web para consultar y administrar los consumibles y fichas técnicas de las
 herramientas (HTA) y equipos de presión (PCE) de Maxim.
 
-Tres pantallas: **intro** (logo + video) → **login** (visualizador / editor) →
-**interfaz** (filtros por categoría y fabricante, tabla de consumibles y visor de PDF).
+Tres pantallas: **intro** (logo + video) → **login** (acceso único con usuario y
+contraseña) → **interfaz** (filtros por categoría y fabricante, tabla de consumibles
+y visor de PDF).
+
+> **Acceso protegido:** nadie ve la información sin iniciar sesión. Todos entran con
+> usuario y contraseña; el sistema reconoce el rol (**visor** o **editor**) desde la
+> base de datos. Los visores consultan y pueden *solicitar* cambios; los editores
+> crean, editan, borran y aprueban solicitudes.
 
 ---
 
 ## 1. Probarla YA (modo demo, sin instalar nada)
 
 Abre `index.html` en el navegador. Funciona con los datos reales del Excel.
-- **Visualizar:** escribe cualquier nombre.
-- **Editar (demo):** usuario cualquiera + contraseña `demo` (para ver los botones de edición;
+En modo demo (sin Supabase) usa cualquier usuario y estas claves de prueba:
+- **Entrar como visor:** contraseña `visor`.
+- **Entrar como editor:** contraseña `editor` (para ver los botones de edición;
   en demo no guarda cambios ni sube archivos).
 
 > El modo demo es solo para ver el diseño. Para guardar datos y subir fichas reales,
@@ -44,16 +51,26 @@ Abre `index.html` en el navegador. Funciona con los datos reales del Excel.
    ```
 6. Sube el `config.js` actualizado a GitHub. Listo: la web ya usa la base de datos.
 
-### Crear editores (los que pueden editar)
-- **Authentication → Users → Add user** → escribe un correo y la **contraseña que tú definas**.
-- En **SQL Editor** ejecuta (una vez por editor), usando el mismo correo:
-  ```sql
-  insert into public.perfiles (id, nombre, rol)
-  select id, 'Nombre del editor', 'editor' from auth.users where email = 'correo@ejemplo.com';
-  ```
-- Ese editor ya podrá entrar en la pestaña **Editar** con su correo y contraseña.
+### Activar el login obligatorio (una sola vez)
+Después de `schema.sql` y `seed.sql`, ejecuta en **SQL Editor** el archivo
+`db/login-visores.sql`. Eso cierra la lectura pública: a partir de ahí **nadie ve la
+información sin iniciar sesión** y solo los editores pueden escribir.
 
-> Los **visualizadores** no necesitan cuenta: solo escriben su nombre.
+### Crear usuarios (visores y editores)
+Cada persona necesita dos pasos:
+1. **Authentication → Users → Add user** → correo + **contraseña que tú definas**
+   (marca *Auto Confirm User*).
+2. **SQL Editor**: asígnale su rol usando la plantilla `db/usuarios-plantilla.sql`.
+   Por ejemplo, para un visor:
+   ```sql
+   insert into public.perfiles (id, nombre, rol)
+   select id, 'Nombre del Visor', 'visor' from auth.users where email = 'correo@ejemplo.com'
+   on conflict (id) do update set nombre = excluded.nombre, rol = excluded.rol;
+   ```
+   Cambia `'visor'` por `'editor'` para dar permisos de edición.
+
+> Todos —visores y editores— ingresan con **usuario y contraseña**. El rol se lee de
+> `public.perfiles`; si a alguien no le asignas rol, entra como **visor**.
 
 ### Fichas técnicas (PDF)
 El `schema.sql` crea un bucket público `fichas`. Cuando un editor abre un equipo y pulsa
@@ -66,7 +83,7 @@ El `schema.sql` crea un bucket público `fichas`. Cuando un editor abre un equip
 ```
 maxim-qaqc/
 ├── index.html            Intro (logo + video)
-├── login.html            Login visualizador / editor
+├── login.html            Login único (usuario + contraseña)
 ├── app.html              Interfaz principal
 ├── assets/
 │   ├── css/styles.css
@@ -78,9 +95,11 @@ maxim-qaqc/
 │   └── video/            fondo.mp4              (ya incluido: Video A en loop)
 ├── data/                 equipos.json, consumibles.json, data.json
 └── db/
-    ├── schema.sql        Crea tablas + seguridad + storage
-    ├── seed.sql          Carga los datos del Excel
-    └── normalize.py      Script que generó los datos (referencia)
+    ├── schema.sql            Crea tablas + seguridad + storage
+    ├── seed.sql              Carga los datos del Excel
+    ├── login-visores.sql     Activa el login obligatorio (RLS: leer=logueado, editar=editor)
+    ├── usuarios-plantilla.sql Alta de usuarios y asignación de rol (visor/editor)
+    └── normalize.py          Script que generó los datos (referencia)
 ```
 
 ## Marca (ya integrada)

@@ -39,8 +39,14 @@ create index if not exists idx_equipos_categoria on public.equipos(categoria);
 create table if not exists public.perfiles (
     id      uuid primary key references auth.users(id) on delete cascade,
     nombre  text,
-    rol     text not null default 'editor'
+    rol     text not null default 'visor'   -- 'visor' | 'editor'  (por defecto: menor privilegio)
 );
+
+-- Funcion de ayuda: ¿el usuario actual es editor?
+create or replace function public.es_editor()
+returns boolean language sql stable security definer set search_path = public as $$
+  select exists (select 1 from public.perfiles p where p.id = auth.uid() and p.rol = 'editor');
+$$;
 
 -- ---------- updated_at automatico ----------
 create or replace function public.set_updated_at()
@@ -54,30 +60,32 @@ for each row execute function public.set_updated_at();
 
 -- ============================================================
 --  SEGURIDAD (Row Level Security)
---  Lectura: publica (cualquier visualizador).
---  Escritura: solo usuarios autenticados (editores).
+--  Lectura: solo usuarios autenticados (visores y editores con login).
+--  Escritura: solo editores (rol verificado en public.perfiles).
 -- ============================================================
 alter table public.equipos     enable row level security;
 alter table public.consumibles enable row level security;
 alter table public.perfiles    enable row level security;
 
--- Lectura publica
+-- Lectura solo autenticados
 drop policy if exists "lectura publica equipos" on public.equipos;
-create policy "lectura publica equipos" on public.equipos
-    for select using (true);
+drop policy if exists "lectura autenticada equipos" on public.equipos;
+create policy "lectura autenticada equipos" on public.equipos
+    for select using (auth.role() = 'authenticated');
 
 drop policy if exists "lectura publica consumibles" on public.consumibles;
-create policy "lectura publica consumibles" on public.consumibles
-    for select using (true);
+drop policy if exists "lectura autenticada consumibles" on public.consumibles;
+create policy "lectura autenticada consumibles" on public.consumibles
+    for select using (auth.role() = 'authenticated');
 
--- Escritura solo autenticados (editores)
+-- Escritura solo editores
 drop policy if exists "escritura editores equipos" on public.equipos;
 create policy "escritura editores equipos" on public.equipos
-    for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+    for all using (public.es_editor()) with check (public.es_editor());
 
 drop policy if exists "escritura editores consumibles" on public.consumibles;
 create policy "escritura editores consumibles" on public.consumibles
-    for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+    for all using (public.es_editor()) with check (public.es_editor());
 
 -- Perfiles: cada quien lee/edita el suyo
 drop policy if exists "perfil propio" on public.perfiles;
@@ -93,13 +101,14 @@ values ('fichas', 'fichas', true)
 on conflict (id) do nothing;
 
 drop policy if exists "fichas lectura publica" on storage.objects;
-create policy "fichas lectura publica" on storage.objects
-    for select using (bucket_id = 'fichas');
+drop policy if exists "fichas lectura autenticada" on storage.objects;
+create policy "fichas lectura autenticada" on storage.objects
+    for select using (bucket_id = 'fichas' and auth.role() = 'authenticated');
 
 drop policy if exists "fichas subida editores" on storage.objects;
 create policy "fichas subida editores" on storage.objects
-    for insert with check (bucket_id = 'fichas' and auth.role() = 'authenticated');
+    for insert with check (bucket_id = 'fichas' and public.es_editor());
 
 drop policy if exists "fichas update editores" on storage.objects;
 create policy "fichas update editores" on storage.objects
-    for update using (bucket_id = 'fichas' and auth.role() = 'authenticated');
+    for update using (bucket_id = 'fichas' and public.es_editor());

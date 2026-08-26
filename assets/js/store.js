@@ -21,30 +21,41 @@
   function limpiarSesion() { localStorage.removeItem(SESION_KEY); }
 
   // ---------- Autenticacion ----------
-  async function loginVisor(nombre) {
-    const s = { rol: "visor", nombre: (nombre || "Invitado").trim() };
+  // Login UNIFICADO: todos (visores y editores) entran con usuario/correo + contraseña.
+  // El ROL se decide en la base de datos (tabla public.perfiles), NO en el navegador.
+  // Si el usuario no tiene perfil, se asume el rol de menor privilegio: 'visor'.
+  async function login(usuario, clave) {
+    if (DEMO) {
+      // Modo demo (sin Supabase): claves de prueba para ver la interfaz.
+      //   clave "editor" -> entra como editor · clave "visor" -> entra como visor
+      if (clave === "editor" || clave === "demo") {
+        const s = { rol: "editor", nombre: usuario || "Editor (demo)", email: usuario };
+        setSesion(s); return s;
+      }
+      if (clave === "visor") {
+        const s = { rol: "visor", nombre: usuario || "Visor (demo)", email: usuario };
+        setSesion(s); return s;
+      }
+      throw new Error('Modo demo: usa la clave "visor" o "editor" para probar.');
+    }
+    // Supabase acepta el correo como usuario
+    const email = usuario.includes("@") ? usuario : `${usuario}`;
+    const { data, error } = await sb.auth.signInWithPassword({ email, password: clave });
+    if (error) throw new Error("Usuario o contraseña incorrectos.");
+    // Leer el rol real del perfil (visor | editor)
+    let rol = "visor", nombre = email;
+    try {
+      const { data: perfil } = await sb.from("perfiles")
+        .select("rol,nombre").eq("id", data.user.id).maybeSingle();
+      if (perfil) { rol = (perfil.rol || "visor").toLowerCase(); nombre = perfil.nombre || email; }
+    } catch (e) { /* si no hay perfil, queda como visor */ }
+    const s = { rol, nombre, email, uid: data.user.id };
     setSesion(s);
     return s;
   }
 
-  async function loginEditor(usuario, clave) {
-    if (DEMO) {
-      // Modo demo: clave universal para probar la interfaz de edicion
-      if (clave === "demo") {
-        const s = { rol: "editor", nombre: usuario || "Editor (demo)", email: usuario };
-        setSesion(s);
-        return s;
-      }
-      throw new Error('Modo demo: usa la clave "demo" para probar el editor.');
-    }
-    // Supabase acepta email como usuario
-    const email = usuario.includes("@") ? usuario : `${usuario}`;
-    const { data, error } = await sb.auth.signInWithPassword({ email, password: clave });
-    if (error) throw new Error("Usuario o contraseña incorrectos.");
-    const s = { rol: "editor", nombre: email, email, uid: data.user.id };
-    setSesion(s);
-    return s;
-  }
+  // Compatibilidad: entrar como editor sigue funcionando llamando al login unificado.
+  async function loginEditor(usuario, clave) { return login(usuario, clave); }
 
   async function logout() {
     if (sb) { try { await sb.auth.signOut(); } catch (e) {} }
@@ -173,7 +184,7 @@
 
   window.Store = {
     DEMO, getSesion, setSesion, limpiarSesion,
-    loginVisor, loginEditor, logout,
+    login, loginEditor, logout,
     getEquipos, guardarEquipo, borrarEquipo, guardarConsumible, borrarConsumible, subirFicha,
     crearSolicitud, getSolicitudes, resolverSolicitud
   };
