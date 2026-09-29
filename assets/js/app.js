@@ -62,6 +62,30 @@ function poblarFabricantes() {
     fabs.map(f => `<option value="${esc(f)}" ${f === filtro.fab ? "selected" : ""}>${esc(f)}</option>`).join("");
 }
 
+// ---------- Orden de la lista: nombre A-Z; si empatan, medida ascendente ----------
+function medidaNum(m) {
+  // Acepta 1.78", 1,78", 3 1/2", 1 7/8, 3/4"
+  const t = String(m || "").replace(/["”″']/g, "").replace(",", ".").trim();
+  let r = t.match(/^(\d+)\s+(\d+)\/(\d+)/);
+  if (r) return +r[1] + r[2] / r[3];
+  r = t.match(/^(\d+)\/(\d+)/);
+  if (r) return r[1] / r[2];
+  r = t.match(/^\d+(\.\d+)?/);
+  return r ? parseFloat(r[0]) : Infinity;
+}
+// El nombre puede incluir la medida (BLANKING PLUG 1,78"); se compara sin ella
+// para que el desempate lo haga la medida numerica y no el texto.
+function nombreBase(e) {
+  return String(e.nombre || "").replace(/\s*\d[\d\s.,\/-]*["”″]?\s*$/, "").trim();
+}
+function cmpEquipos(a, b) {
+  const c = nombreBase(a).localeCompare(nombreBase(b), "es", { sensitivity: "base", numeric: true });
+  if (c) return c;
+  const d = medidaNum(a.medida) - medidaNum(b.medida);
+  if (d && isFinite(d)) return d;
+  return String(a.nombre).localeCompare(String(b.nombre), "es", { numeric: true });
+}
+
 // ---------- Render lista ----------
 function render() {
   const lista = $("lista");
@@ -73,7 +97,7 @@ function render() {
       if (!hay.includes(filtro.texto)) return false;
     }
     return true;
-  });
+  }).sort(cmpEquipos);
 
   if (!items.length) { lista.innerHTML = `<p style="color:var(--texto-tenue);font-size:.85rem;padding:.5rem">Sin resultados.</p>`; return; }
 
