@@ -5,13 +5,14 @@ let EQUIPOS = [];
 let filtro = { cat: "", fab: "", texto: "" };
 let seleccionado = null;
 let editandoConsumible = null;
+let filasCons = [];
 let SESION = null, ROL = "visor";
 
 const $ = (id) => document.getElementById(id);
 
 // ---------- Arranque ----------
 (async function init() {
-  const s = Store.getSesion();
+  const s = await Store.revalidarSesion();
   if (!s) { location.href = "login.html"; return; }
   SESION = s; ROL = s.rol;
 
@@ -217,18 +218,20 @@ function renderTabla() {
 
   // 3) Render
   let html = "";
+  filasCons = [];
   ordenGrupos.forEach(g => {
     if (g) {
       const gi = grupos.get(g);
       html += `<tr class="grupo-row"><td colspan="4">${esc(g)}<span class="g-cuenta">${gi.length} ítems · ${gi.reduce((a, c) => a + numCant(c), 0)} und</span></td></tr>`;
     }
     grupos.get(g).forEach(c => {
+      filasCons.push(c);
       html += `<tr>
         <td>${esc(c.tipo)}</td>
         <td>${esc(c.cantidad || "")}</td>
         <td>${esc(c.referencia || "")}</td>
         <td>
-          <button class="btn ghost mini" onclick='abrirModalConsumible(${JSON.stringify(c).replace(/'/g, "&#39;")})'>✎</button>
+          <button class="btn ghost mini" onclick="abrirModalConsumible(filasCons[${filasCons.length - 1}])">✎</button>
         </td>
       </tr>`;
     });
@@ -237,23 +240,34 @@ function renderTabla() {
   actualizarFlechas();
 }
 
-function renderFicha() {
+async function renderFicha() {
   renderKpis();
   const cont = $("ficha-cont");
-  const url = seleccionado.ficha_tecnica_url;
+  const ref = seleccionado.ficha_tecnica_url;
   const nombre = seleccionado.ficha_tecnica_nombre || seleccionado.ficha_tecnica || "";
+  const id = seleccionado.id;
   $("ficha-nombre").textContent = nombre ? nombre : "";
-  $("ficha-btn-txt").textContent = url ? "Reemplazar PDF" : "Subir PDF";
+  $("ficha-btn-txt").textContent = ref ? "Reemplazar PDF" : "Subir PDF";
 
+  let url = "";
+  if (ref) {
+    url = await Store.urlFicha(ref);
+    if (!seleccionado || seleccionado.id !== id) return;   // el usuario cambio de equipo
+    // solo se muestran enlaces https (evita javascript: u otros esquemas)
+    if (!/^https:\/\//i.test(url)) url = "";
+  }
   if (url) {
     $("ficha-abrir").style.display = "inline-flex";
     $("ficha-abrir").href = url;
-    cont.innerHTML = `<iframe class="ficha-visor" src="${esc(url)}#toolbar=1&view=FitH"></iframe>`;
+    $("ficha-abrir").rel = "noopener noreferrer";
+    cont.innerHTML = `<iframe class="ficha-visor" src="${esc(url)}#toolbar=1&view=FitH" referrerpolicy="no-referrer"></iframe>`;
   } else {
     $("ficha-abrir").style.display = "none";
-    const aviso = nombre
-      ? `Ficha referenciada en el Excel: <b>${esc(nombre)}</b>.<br>Sube el PDF para poder visualizarlo aquí.`
-      : "No hay ficha técnica cargada para este equipo.";
+    const aviso = ref
+      ? "No se pudo abrir la ficha. Intenta de nuevo o vuelve a subir el PDF."
+      : nombre
+        ? `Ficha referenciada en el Excel: <b>${esc(nombre)}</b>.<br>Sube el PDF para poder visualizarlo aquí.`
+        : "No hay ficha técnica cargada para este equipo.";
     cont.innerHTML = `<div class="ficha-none">${aviso}${Store.DEMO ? "<br><small>(En modo demo no se pueden subir archivos.)</small>" : ""}</div>`;
   }
 }
@@ -456,7 +470,7 @@ async function subirFicha(input) {
 function abrir(id) { $(id).classList.add("abierto"); }
 function cerrar(id) { $(id).classList.remove("abierto"); }
 function salir() { Store.logout().finally(() => location.href = "login.html"); }
-function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m])); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"'`]/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;", "`": "&#96;" }[m])); }
 let toastT;
 function toast(txt, ok) {
   const t = $("toast"); t.textContent = txt; t.className = "toast " + (ok ? "ok" : "err");

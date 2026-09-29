@@ -18,3 +18,7 @@ window.APP_CONFIG = {
 
 // No editar debajo de esta linea -------------------------------
 window.APP_CONFIG.DEMO = !window.APP_CONFIG.SUPABASE_URL || !window.APP_CONFIG.SUPABASE_ANON_KEY;
+
+// Los datos de ejemplo (data.js) SOLO se cargan en modo demo. Con Supabase configurado
+// no se descargan: asi la informacion no queda expuesta sin iniciar sesion.
+if (window.APP_CONFIG.DEMO) document.write('<script src="assets/js/data.js?v=2"><\/script>');

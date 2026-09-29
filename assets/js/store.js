@@ -57,6 +57,27 @@
   // Compatibilidad: entrar como editor sigue funcionando llamando al login unificado.
   async function loginEditor(usuario, clave) { return login(usuario, clave); }
 
+  // Confirma que la sesion de Supabase sigue viva y que el rol guardado es el real.
+  // Devuelve la sesion actualizada, o null si hay que volver a iniciar sesion.
+  async function revalidarSesion() {
+    const actual = getSesion();
+    if (!actual) return null;
+    if (DEMO) return actual;
+    if (!sb) return actual;
+    const { data } = await sb.auth.getSession();
+    if (!data || !data.session) { limpiarSesion(); return null; }
+    try {
+      const { data: perfil, error } = await sb.from("perfiles")
+        .select("rol,nombre").eq("id", data.session.user.id).maybeSingle();
+      if (!error) {
+        actual.rol = perfil ? (perfil.rol || "visor").toLowerCase() : "visor";
+        if (perfil && perfil.nombre) actual.nombre = perfil.nombre;
+        setSesion(actual);
+      }
+    } catch (e) { /* si falla la consulta se conserva el rol guardado */ }
+    return actual;
+  }
+
   async function logout() {
     if (sb) { try { await sb.auth.signOut(); } catch (e) {} }
     limpiarSesion();
@@ -120,17 +141,33 @@
     if (error) throw error;
   }
 
-  // ---------- Ficha tecnica (subir PDF a Storage) ----------
+  // ---------- Ficha tecnica (PDF en Storage) ----------
+  // Se guarda la RUTA del archivo (no una URL publica). Para verlo se pide un enlace
+  // firmado temporal, asi el bucket puede ser privado. Compatible con filas antiguas
+  // que guardaron la URL publica completa.
+  function rutaDeFicha(valor) {
+    if (!valor) return "";
+    const m = String(valor).match(/\/object\/(?:public|sign)\/[^/]+\/([^?]+)/);
+    return m ? decodeURIComponent(m[1]) : String(valor);
+  }
+  async function urlFicha(valor) {
+    if (!valor || DEMO || !sb) return "";
+    const { data, error } = await sb.storage.from(cfg.BUCKET_FICHAS).createSignedUrl(rutaDeFicha(valor), 3600);
+    if (error || !data) return "";
+    return data.signedUrl;
+  }
   async function subirFicha(equipoId, file) {
     if (DEMO) throw new Error("Modo demo: conecta Supabase para subir fichas.");
-    const ruta = `equipo-${equipoId}/${Date.now()}-${file.name}`;
-    const { error: upErr } = await sb.storage.from(cfg.BUCKET_FICHAS).upload(ruta, file, { upsert: true, contentType: "application/pdf" });
+    if (file.type !== "application/pdf") throw new Error("El archivo debe ser PDF.");
+    if (file.size > 25 * 1024 * 1024) throw new Error("El PDF supera 25 MB.");
+    const limpio = file.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^A-Za-z0-9._-]+/g, "_").replace(/^\.+/, "").slice(-80) || "ficha.pdf";
+    const ruta = `equipo-${Number(equipoId)}/${Date.now()}-${limpio}`;
+    const { error: upErr } = await sb.storage.from(cfg.BUCKET_FICHAS).upload(ruta, file, { upsert: false, contentType: "application/pdf" });
     if (upErr) throw upErr;
-    const { data } = sb.storage.from(cfg.BUCKET_FICHAS).getPublicUrl(ruta);
-    const url = data.publicUrl;
-    const { error } = await sb.from("equipos").update({ ficha_tecnica_url: url, ficha_tecnica_nombre: file.name }).eq("id", equipoId);
+    const { error } = await sb.from("equipos").update({ ficha_tecnica_url: ruta, ficha_tecnica_nombre: file.name }).eq("id", equipoId);
     if (error) throw error;
-    return { url, nombre: file.name };
+    return { url: ruta, nombre: file.name };
   }
 
   // ---------- Solicitudes de edicion (flujo de aprobacion) ----------
@@ -157,17 +194,26 @@
     return data || [];
   }
 
+  // Solo estos campos pueden cambiarse por una solicitud (el JSON lo envia un visor).
+  const CAMPOS_EQUIPO = ["categoria", "familia", "nombre", "medida", "fabricante"];
+  const CAMPOS_CONS = ["grupo", "tipo", "cantidad", "referencia"];
+  function soloCampos(obj, permitidos) {
+    const out = {};
+    permitidos.forEach(k => { if (obj && Object.prototype.hasOwnProperty.call(obj, k)) out[k] = obj[k]; });
+    return out;
+  }
+
   async function resolverSolicitud(sol, aprobar, editor) {
     if (DEMO) throw new Error("Modo demo.");
     if (aprobar) {
       if (sol.tipo === "editar_equipo") {
-        const { error } = await sb.from("equipos").update(sol.propuesta).eq("id", sol.equipo_id);
+        const { error } = await sb.from("equipos").update(soloCampos(sol.propuesta, CAMPOS_EQUIPO)).eq("id", sol.equipo_id);
         if (error) throw error;
       } else if (sol.tipo === "agregar_consumible") {
-        const { error } = await sb.from("consumibles").insert({ ...sol.propuesta, equipo_id: sol.equipo_id });
+        const { error } = await sb.from("consumibles").insert({ ...soloCampos(sol.propuesta, CAMPOS_CONS), equipo_id: sol.equipo_id });
         if (error) throw error;
       } else if (sol.tipo === "editar_consumible") {
-        const { error } = await sb.from("consumibles").update(sol.propuesta).eq("id", sol.consumible_id);
+        const { error } = await sb.from("consumibles").update(soloCampos(sol.propuesta, CAMPOS_CONS)).eq("id", sol.consumible_id);
         if (error) throw error;
       } else if (sol.tipo === "eliminar_consumible") {
         const { error } = await sb.from("consumibles").delete().eq("id", sol.consumible_id);
@@ -185,7 +231,7 @@
   window.Store = {
     DEMO, getSesion, setSesion, limpiarSesion,
     login, loginEditor, logout,
-    getEquipos, guardarEquipo, borrarEquipo, guardarConsumible, borrarConsumible, subirFicha,
+    revalidarSesion, urlFicha, getEquipos, guardarEquipo, borrarEquipo, guardarConsumible, borrarConsumible, subirFicha,
     crearSolicitud, getSolicitudes, resolverSolicitud
   };
 })();
