@@ -6,7 +6,7 @@
   <title>MAXIM · QA/QC Insumos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=3" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=4" />
 </head>
 <body>
   <header class="topbar">
@@ -33,6 +33,7 @@
         <div class="buscar"><input id="buscar" type="text" placeholder="Buscar por nombre, medida…" /></div>
         <button class="btn editor-only mini" style="width:100%" onclick="abrirModalEquipo()">+ Nuevo equipo</button>
       </div>
+      <div class="lista-cab"><span id="lista-total"></span><span>A–Z</span></div>
       <div class="lista" id="lista"></div>
     </aside>
 
@@ -56,6 +57,12 @@
             <button class="btn sec mini editable" onclick="abrirModalEquipo(true)">Editar datos</button>
             <button class="btn mini editable" onclick="abrirModalConsumible()">+ Consumible</button>
           </div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><span class="ic ic-pce"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="4"></circle></svg></span><span class="tx"><span class="lb">Tipos de consumible</span><span class="vl" id="kpi-tipos">0</span></span></div>
+          <div class="kpi"><span class="ic ic-hta"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"></path><path d="M3 8l9 5 9-5M12 13v8"></path></svg></span><span class="tx"><span class="lb">Unidades por kit</span><span class="vl" id="kpi-unid">0</span></span></div>
+          <div class="kpi"><span class="ic" id="kpi-ficha-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"></path><path d="M14 3v6h6"></path></svg></span><span class="tx"><span class="lb">Ficha técnica</span><span class="vl sm" id="kpi-ficha">Pendiente</span></span></div>
         </div>
 
         <div class="tabla-wrap">

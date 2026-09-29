@@ -99,10 +99,12 @@ function render() {
     return true;
   }).sort(cmpEquipos);
 
+  $("lista-total").textContent = `${items.length} ${items.length === 1 ? "EQUIPO" : "EQUIPOS"}`;
   if (!items.length) { lista.innerHTML = `<p style="color:var(--texto-tenue);font-size:.85rem;padding:.5rem">Sin resultados.</p>`; return; }
 
   lista.innerHTML = items.map(e => `
     <button class="item ${seleccionado && seleccionado.id === e.id ? "sel" : ""}" onclick="seleccionar(${e.id})">
+      <span class="txt">
       <span class="n">${esc(e.nombre)}</span>
       <span class="m">
         <span class="tag-cat ${e.categoria}">${e.categoria}</span>
@@ -111,6 +113,8 @@ function render() {
         ${e.fabricante ? `<span>· ${esc(e.fabricante)}</span>` : ""}
         ${e.ficha_tecnica || e.ficha_tecnica_url ? `<span title="Tiene ficha">📄</span>` : ""}
       </span>
+      </span>
+      <span class="cnt" title="Consumibles">${(e.consumibles || []).length}</span>
     </button>`).join("");
 }
 
@@ -169,7 +173,22 @@ function actualizarFlechas() {
   });
 }
 
+// Cantidad numerica de un consumible (texto como "2" o "2 und"); si no es numero cuenta 0.
+function numCant(c) { const n = parseFloat(String(c.cantidad || "").replace(",", ".")); return isFinite(n) ? n : 0; }
+
+function renderKpis() {
+  const cons = seleccionado.consumibles || [];
+  $("kpi-tipos").textContent = new Set(cons.map(c => (c.tipo || "").trim().toUpperCase()).filter(Boolean)).size;
+  $("kpi-unid").textContent = cons.reduce((a, c) => a + numCant(c), 0);
+  const carg = !!seleccionado.ficha_tecnica_url;
+  const v = $("kpi-ficha");
+  v.textContent = carg ? "Cargada" : "Pendiente";
+  v.className = "vl sm " + (carg ? "ok" : "warn");
+  $("kpi-ficha-ic").className = "ic " + (carg ? "ic-ok" : "ic-warn");
+}
+
 function renderTabla() {
+  renderKpis();
   const tb = $("d-tabla");
   const cons = seleccionado.consumibles || [];
   if (!cons.length) {
@@ -199,7 +218,10 @@ function renderTabla() {
   // 3) Render
   let html = "";
   ordenGrupos.forEach(g => {
-    if (g) html += `<tr class="grupo-row"><td colspan="4">${esc(g)}</td></tr>`;
+    if (g) {
+      const gi = grupos.get(g);
+      html += `<tr class="grupo-row"><td colspan="4">${esc(g)}<span class="g-cuenta">${gi.length} ítems · ${gi.reduce((a, c) => a + numCant(c), 0)} und</span></td></tr>`;
+    }
     grupos.get(g).forEach(c => {
       html += `<tr>
         <td>${esc(c.tipo)}</td>
@@ -216,6 +238,7 @@ function renderTabla() {
 }
 
 function renderFicha() {
+  renderKpis();
   const cont = $("ficha-cont");
   const url = seleccionado.ficha_tecnica_url;
   const nombre = seleccionado.ficha_tecnica_nombre || seleccionado.ficha_tecnica || "";
