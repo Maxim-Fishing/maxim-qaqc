@@ -110,7 +110,7 @@ function render() {
       <span class="m">
         <span class="tag-cat ${e.categoria}">${e.categoria}</span>
         ${e.certificado ? `<span class="tag-cert">CERTIFICADO</span>` : ""}
-        ${e.medida ? `<span>${esc(e.medida)}</span>` : ""}
+        ${e.medida ? `<span class="medida">${esc(e.medida)}</span>` : ""}
         ${e.fabricante ? `<span>· ${esc(e.fabricante)}</span>` : ""}
         ${e.ficha_tecnica || e.ficha_tecnica_url ? `<span title="Tiene ficha">📄</span>` : ""}
       </span>
@@ -132,7 +132,7 @@ function seleccionar(id) {
     seleccionado.certificado ? `<span class="chip chip-cert">✓ CERTIFICADO</span>` : "",
     `<span class="chip">${seleccionado.categoria === "HTA" ? "Herramienta" : "Equipo de presión"}</span>`,
     seleccionado.familia ? `<span class="chip">${esc(seleccionado.familia)}</span>` : "",
-    seleccionado.medida ? `<span class="chip">${esc(seleccionado.medida)}</span>` : "",
+    seleccionado.medida ? `<span class="chip chip-medida"><small>MEDIDA</small>${esc(seleccionado.medida)}</span>` : "",
     seleccionado.fabricante ? `<span class="chip">Fab: ${esc(seleccionado.fabricante)}</span>` : ""
   ].join("");
 
